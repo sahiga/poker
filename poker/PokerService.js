@@ -1,6 +1,10 @@
 (function() {
   angular.module('poker.service', ['poker.constants'])
   .service('PokerService', function(PokerConstants) {
+
+    /**
+      Creates an ordered array of cards
+    */
     this.createDeck = function() {
       var deck = [];
 
@@ -14,7 +18,11 @@
       return deck;
     };
 
+    /**
+      Creates a shuffled deck
+    */
     this.shuffleDeck = function(deck) {
+      // copy the provided deck
       var copy = deck.slice();
 
       copy.reduce(function(rangeSize) {
@@ -34,10 +42,17 @@
       return copy;
     };
 
-    this.drawHands = function() {
+    /**
+      Deals new cards to each player in the game
+    */
+    this.dealCards = function() {
       var hands = [];
-      var ordered = this.createDeck();
-      var shuffled = this.shuffleDeck(ordered);
+
+      if (!this.orderedDeck) {
+        this.orderedDeck = this.createDeck();
+      }
+
+      var shuffled = this.shuffleDeck(this.orderedDeck);
       var startIdx = 0;
       var endIdx = PokerConstants.NUM_CARDS_IN_HAND;
 
@@ -53,10 +68,9 @@
       return hands;
     };
 
-    this.getHands = function() {
-      return drawnCards;
-    };
-
+    /**
+      Determines the winner of the game
+    */
     this.calculateWinningHand = function(hands) {
       var winningScore = 0;
       var winningHand;
@@ -78,5 +92,8 @@
         winningHand: winningHand
       }
     };
+
+    // Initializes an ordered deck of cards
+    this.orderedDeck = this.createDeck();
   });
 })();
