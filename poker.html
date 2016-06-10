@@ -5,7 +5,7 @@
     <button type="submit"
             class="control"
             ng-click="startGame()">
-      Start Game
+      Start a New Game
     </button>
 
     <button type="submit"
@@ -15,18 +15,38 @@
     </button>
   </div>
 
-  <div ng-repeat="hand in hands">
-    <div class="hand">
-      <h2>
-        Player
-        <span ng-bind="hand.playerNumber">
-      </h2>
-      <div ng-repeat="card in hand.cards">
-        <div ng-bind-html="card | escapeHtml"></div>
+  <div class="all-hands">
+    <div ng-repeat="hand in hands">
+      <div class="hand"
+           ng-class="{'highlighted': hand.playerNumber === winner.winningHand}">
+        <h2>
+          <span ng-if="hand.playerNumber === 2">
+            You
+          </span>
+          <span ng-if="hand.playerNumber !== 2">
+            Opponent
+          </span>
+        </h2>
+        <ul class="card-list">
+          <li ng-repeat="card in hand.cards"
+              ng-bind-html="card | evaluateHtml"
+              class="card">
+          </li>
+        </ul>
+        <h3 ng-show="hand.playerNumber === winner.winningHand">
+          Score:
+          <span ng-bind="winner.winningScore"></span>
+        </h3>
       </div>
     </div>
   </div>
-  {{winner}}
+  
+  <h1 ng-show="!!winner.winningHand && winner.winningHand === 2">
+    congrats :)
+  </h1>
+  <h1 ng-show="!!winner.winningHand && winner.winningHand !== 2">
+    better luck next time :'(
+  </h1>
 </div>
 
 

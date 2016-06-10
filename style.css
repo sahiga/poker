@@ -4,13 +4,24 @@ body {
   text-align: center;
 }
 
+h2 {
+  border-bottom: 2px solid #BB1818;
+  line-height: 2em;
+}
+
 .game {
   padding: 2em;
 }
 
+.all-hands {
+  overflow: auto;
+}
+
 .hand {
-  width: 33%;
+  width: 28%;
   float: left;
+  margin: 0 1em;
+  padding: 1em;
 }
 
 .game-controls {
@@ -21,7 +32,7 @@ body {
 .control {
   padding: 0.5em;
   width: 190px;
-  background: #8F46E0;
+  background: #BB1818;
   font-size: 0.8em;
   color: #fff;
   font-weight: 700;
@@ -29,8 +40,40 @@ body {
   cursor: pointer;
   border: 0;
   border-radius: 2px;
+
 }
 
 .control:hover {
   opacity: 0.8;
+}
+
+.card-list {
+  overflow: auto;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.card {
+  width: 66px;
+  height: 100px;
+  float: left;
+  padding: 1em 0 0 0;
+  margin: 0 0.1em;
+  font-size: 2em;
+  border: 1px solid #BB1818;
+  border-radius: 2px;
+  box-sizing: border-box;
+}
+
+.card:first-child {
+  margin: 0 0.1em 0 0;
+}
+
+.card:last-child {
+  margin: 0 0 0 0.1em;
+}
+
+.highlighted {
+  border: 3px solid goldenrod;
 }

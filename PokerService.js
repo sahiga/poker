@@ -58,7 +58,7 @@
     };
 
     this.calculateWinningHand = function(hands) {
-      var maxScore = 0;
+      var winningScore = 0;
       var winningHand;
 
       for (var i = 0; i < hands.length; i++) {
@@ -67,14 +67,14 @@
           var cardRank = hands[i].cards[j].charAt(0);
           currentScore += PokerConstants.RANKS[cardRank];
         }
-        if (currentScore > maxScore) {
-          maxScore = currentScore;
+        if (currentScore > winningScore) {
+          winningScore = currentScore;
           winningHand = hands[i].playerNumber;
         }
       }
 
       return {
-        maxScore: maxScore,
+        winningScore: winningScore,
         winningHand: winningHand
       }
     };
