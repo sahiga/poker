@@ -17,8 +17,13 @@
 
   <div ng-repeat="hand in hands">
     <div class="hand">
-      <h2 ng-bind="hand.playerNumber"></h2>
-      <div ng-bind="hand.cards"></div>
+      <h2>
+        Player
+        <span ng-bind="hand.playerNumber">
+      </h2>
+      <div ng-repeat="card in hand.cards">
+        <div ng-bind-html="card | escapeHtml"></div>
+      </div>
     </div>
   </div>
   {{winner}}

@@ -43,7 +43,7 @@
 
       for (var i = 0; i < PokerConstants.NUM_HANDS; i++) {
         var currentHand = {};
-        currentHand.playerNumber = i;
+        currentHand.playerNumber = i + 1;
         currentHand.cards = shuffled.slice(startIdx, endIdx);
         hands.push(currentHand);
         startIdx = endIdx;

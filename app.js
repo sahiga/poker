@@ -3,7 +3,7 @@
     'ui.router',
     'poker.controller',
     'poker.service',
-    'poker.directives',
+    'poker.helpers',
     'poker.constants'
   ])
   .config(function($stateProvider, $urlRouterProvider) {
