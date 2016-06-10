@@ -76,4 +76,5 @@ h2 {
 
 .highlighted {
   border: 3px solid goldenrod;
+  border-radius: 2px;
 }

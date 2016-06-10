@@ -11,7 +11,7 @@
       .state('home', {
         url: '/',
         controller: 'PokerController',
-        templateUrl: 'poker.html'
+        templateUrl: 'poker/poker.html'
       }
     );
     $urlRouterProvider.otherwise('/');
