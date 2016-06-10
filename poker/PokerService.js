@@ -78,7 +78,7 @@
       for (var i = 0; i < hands.length; i++) {
         var currentScore = 0;
         for (var j in hands[i].cards) {
-          var cardRank = hands[i].cards[j].charAt(0);
+          var cardRank = hands[i].cards[j].replace(/&#[0-9]+;/, '');
           currentScore += PokerConstants.RANKS[cardRank];
         }
         if (currentScore > winningScore) {
