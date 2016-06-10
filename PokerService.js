@@ -1,18 +1,12 @@
 (function() {
-  angular.module('poker.service', [])
-  .service('PokerService', function() {
-    var ranks = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A'];
-    var suits = ['clubs', 'spades', 'diamonds', 'hearts'];
-    var NUM_CARDS_IN_HAND = 5;
-    var NUM_HANDS = 3;
-    var hands = [];
-
+  angular.module('poker.service', ['poker.constants'])
+  .service('PokerService', function(PokerConstants) {
     this.createDeck = function() {
       var deck = [];
 
-      for (var i = 0; i < ranks.length; i++) {
-        for (var j = 0; j < suits.length; j++) {
-          var cardName = ranks[i] + ' of ' + suits[j];
+      for (var i in PokerConstants.RANKS) {
+        for (var j = 0; j < PokerConstants.SUITS.length; j++) {
+          var cardName = i + PokerConstants.SUITS[j];
           deck.push(cardName);
         }
       }
@@ -41,15 +35,19 @@
     };
 
     this.drawHands = function() {
+      var hands = [];
       var ordered = this.createDeck();
       var shuffled = this.shuffleDeck(ordered);
       var startIdx = 0;
-      var endIdx = NUM_CARDS_IN_HAND;
+      var endIdx = PokerConstants.NUM_CARDS_IN_HAND;
 
-      for (var i = 0; i < NUM_HANDS; i++) {
-        hands.push(shuffled.slice(startIdx, endIdx));
+      for (var i = 0; i < PokerConstants.NUM_HANDS; i++) {
+        var currentHand = {};
+        currentHand.playerNumber = i;
+        currentHand.cards = shuffled.slice(startIdx, endIdx);
+        hands.push(currentHand);
         startIdx = endIdx;
-        endIdx += NUM_CARDS_IN_HAND;
+        endIdx += PokerConstants.NUM_CARDS_IN_HAND;
       }
 
       return hands;
@@ -57,6 +55,28 @@
 
     this.getHands = function() {
       return drawnCards;
+    };
+
+    this.calculateWinningHand = function(hands) {
+      var maxScore = 0;
+      var winningHand;
+
+      for (var i = 0; i < hands.length; i++) {
+        var currentScore = 0;
+        for (var j in hands[i].cards) {
+          var cardRank = hands[i].cards[j].charAt(0);
+          currentScore += PokerConstants.RANKS[cardRank];
+        }
+        if (currentScore > maxScore) {
+          maxScore = currentScore;
+          winningHand = hands[i].playerNumber;
+        }
+      }
+
+      return {
+        maxScore: maxScore,
+        winningHand: winningHand
+      }
     };
   });
 })();

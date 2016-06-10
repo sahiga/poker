@@ -5,7 +5,8 @@
       restrict: 'A',
       scope: '=',
       link: function(scope, elem, attrs) {
-        
+        var playerNumber = attrs.hand.playerNumber;
+        var cards = attrs.hand.cards;
       }
     };
   });

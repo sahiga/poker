@@ -1,11 +1,27 @@
 <div class="game">
   <h1>Poker</h1>
-  <div ng-repeat="hand in hands">
-    {{hand}}
+
+  <div class="game-controls">
+    <button type="submit"
+            class="control"
+            ng-click="startGame()">
+      Start Game
+    </button>
+
+    <button type="submit"
+            class="control"
+            ng-click="showWinner()">
+      Show Winner
+    </button>
   </div>
 
-  <button type="submit"
-          ng-click="startGame()">
-    Start Game
-  </button>
+  <div ng-repeat="hand in hands">
+    <div class="hand">
+      <h2 ng-bind="hand.playerNumber"></h2>
+      <div ng-bind="hand.cards"></div>
+    </div>
+  </div>
+  {{winner}}
 </div>
+
+

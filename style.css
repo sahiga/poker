@@ -1,0 +1,39 @@
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #222;
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+.game {
+  padding: 2em;
+}
+
+.hand {
+  width: 33%;
+  float: left;
+}
+
+.game-controls {
+  text-align: center;
+  margin: 2em 0;
+}
+
+.control {
+  padding: 0.5em;
+  width: 190px;
+  background: #8F46E0;
+  font-size: 0.8em;
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+  border: 0;
+  border-radius: 2px;
+}
+
+.control:hover {
+  opacity: 0.8;
+}

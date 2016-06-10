@@ -3,7 +3,8 @@
     'ui.router',
     'poker.controller',
     'poker.service',
-    'poker.directives'
+    'poker.directives',
+    'poker.constants'
   ])
   .config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
@@ -14,10 +15,5 @@
       }
     );
     $urlRouterProvider.otherwise('/');
-  })
-  .run(function($rootScope) {
-    $rootScope.$on('$viewContentLoaded', function($state) {
-      console.log('$state is', $state);
-    });
   });
 })();

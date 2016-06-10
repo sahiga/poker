@@ -5,5 +5,9 @@
     $scope.startGame = function() {
       $scope.hands = PokerService.drawHands();
     };
+
+    $scope.showWinner = function() {
+      $scope.winner = PokerService.calculateWinningHand($scope.hands);
+    };
   });
 })();
